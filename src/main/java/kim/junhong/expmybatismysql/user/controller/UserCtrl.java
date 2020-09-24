@@ -4,6 +4,7 @@ import kim.junhong.expmybatismysql.user.dto.User;
 import kim.junhong.expmybatismysql.user.mapper.UserMapper;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/users")
 @MapperScan(basePackages = "kim.junhong.expmybatismysql.user.mapper")
 public class UserCtrl {
 
@@ -21,8 +23,8 @@ public class UserCtrl {
         this.userMapper = userMapper;
     }
 
-    @RequestMapping("/users")
-    public List<User> users(@RequestParam(value = "country", defaultValue = "") String country) {
+    @GetMapping
+    public List<User> getUsers(@RequestParam(value = "country", defaultValue = "") String country) {
         final User param = new User(0, null, country);
         return userMapper.selectUsers(param);
     }
