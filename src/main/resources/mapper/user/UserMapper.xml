@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kim.junhong.expmybatismysql.user.mapper.UserMapper">
+
+    <select id="selectUsers"
+            parameterType="kim.junhong.expmybatismysql.user.dto.User"
+            resultType="kim.junhong.expmybatismysql.user.dto.User">
+        SELECT
+            `seq`, `name`, `country`
+        FROM user
+        <if test='country != null and country != ""'>
+            WHERE country = #{country}
+        </if>
+    </select>
+
+</mapper>
