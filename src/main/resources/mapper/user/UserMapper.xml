@@ -14,5 +14,14 @@
             WHERE country = #{country}
         </if>
     </select>
+    <select id="selectUser"
+            parameterType="int"
+            resultType="kim.junhong.expmybatismysql.user.dto.User"
+    >
+        SELECT
+            `seq`, `name`, `country`
+        FROM user
+        WHERE seq = ${seq}
+    </select>
 
 </mapper>

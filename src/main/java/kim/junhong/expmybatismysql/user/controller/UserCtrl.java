@@ -4,10 +4,7 @@ import kim.junhong.expmybatismysql.user.dto.User;
 import kim.junhong.expmybatismysql.user.mapper.UserMapper;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,5 +24,10 @@ public class UserCtrl {
     public List<User> getUsers(@RequestParam(value = "country", defaultValue = "") String country) {
         final User param = new User(0, null, country);
         return userMapper.selectUsers(param);
+    }
+
+    @GetMapping("/{seq}")
+    public User getUser(@PathVariable int seq) {
+        return userMapper.selectUser(seq);
     }
 }

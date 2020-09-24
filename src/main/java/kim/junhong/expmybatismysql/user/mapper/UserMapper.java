@@ -11,4 +11,5 @@ import java.util.List;
 public interface UserMapper {
 
     List<User> selectUsers(User param);
+    User selectUser(int seq);
 }
